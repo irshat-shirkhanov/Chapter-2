@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CISI Practice Tests</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1E2761;--navy-l:#CADCFC;--navy-d:#12195F;
+  --teal:#028090;--teal-l:#D6F0F3;--teal-d:#015E6A;--teal-m:#1D9E75;
+  --amber:#B07D12;--amber-l:#FEF3C7;
+  --coral:#D85A30;--coral-l:#FAECE7;
+  --purple:#534AB7;--purple-l:#EEEDFE;
+  --green-l:#E1F5EE;--green:#085041;
+  --gray:#64748B;--gray-l:#F1F5F9;--gray-m:#CBD5E1;
+  --bg:#F0F4F8;--card:#fff;--text:#1e293b;--text2:#475569;--text3:#94a3b8;
+  --radius:14px;--shadow:0 2px 12px rgba(0,0,0,.09);
+}
+
+body{font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* ── HEADER ── */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--teal) 100%);padding:2.8rem 1.5rem 2.2rem;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:var(--navy-l);font-size:.75rem;font-weight:600;padding:.3rem .9rem;border-radius:20px;margin-bottom:1rem;letter-spacing:.05em}
+.hero h1{color:#fff;font-size:1.9rem;font-weight:800;line-height:1.2;margin-bottom:.6rem}
+.hero h1 span{color:var(--navy-l)}
+.hero p{color:var(--navy-l);font-size:.95rem;max-width:520px;margin:0 auto 1.4rem;line-height:1.6}
+.hero-stats{display:flex;gap:1.5rem;justify-content:center;flex-wrap:wrap}
+.stat{text-align:center}
+.stat .n{font-size:1.6rem;font-weight:800;color:#fff}
+.stat .l{font-size:.72rem;color:var(--navy-l);margin-top:.1rem}
+
+/* ── MAIN ── */
+.main{max-width:860px;margin:0 auto;padding:2rem 1.2rem 3rem}
+
+.section-label{font-size:.7rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;margin:2rem 0 .85rem;padding-left:.1rem}
+
+/* ── TEST CARDS ── */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
+
+.test-card{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;text-decoration:none;color:inherit;display:flex;flex-direction:column;transition:transform .18s,box-shadow .18s;border:1px solid rgba(0,0,0,.05)}
+.test-card:hover{transform:translateY(-3px);box-shadow:0 6px 24px rgba(0,0,0,.13)}
+
+.card-top{padding:1.1rem 1.2rem .85rem;flex:1}
+.card-accent{width:36px;height:5px;border-radius:3px;margin-bottom:.85rem}
+.card-chapter{font-size:1.68rem;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:.3rem}
+.card-title{font-size:1rem;font-weight:700;color:var(--navy);line-height:1.35;margin-bottom:.5rem}
+.card-desc{font-size:.8rem;color:var(--text2);line-height:1.55}
+
+.card-footer{padding:.65rem 1.2rem;border-top:1px solid var(--gray-m);display:flex;align-items:center;justify-content:space-between;background:var(--gray-l)}
+.card-meta{display:flex;gap:.5rem;flex-wrap:wrap}
+.chip{font-size:.68rem;font-weight:600;padding:.18rem .55rem;border-radius:20px}
+.chip-q{background:var(--teal-l);color:var(--teal-d)}
+.chip-vocab{background:var(--purple-l);color:#3C3489}
+.chip-new{background:var(--amber-l);color:var(--amber)}
+.card-arrow{color:var(--teal);font-size:1.1rem;font-weight:700}
+
+/* ── VOCAB CARD (wider) ── */
+.vocab-card{grid-column:1/-1}
+.vocab-card .card-top{display:flex;gap:1.2rem;align-items:flex-start}
+.vocab-icon{font-size:2.2rem;flex-shrink:0;margin-top:.1rem}
+
+/* ── FOOTER ── */
+.footer{text-align:center;padding:1.5rem;font-size:.78rem;color:var(--text3);border-top:1px solid var(--gray-m);margin-top:1rem}
+
+/* ── RESPONSIVE ── */
+@media(max-width:500px){
+  .hero h1{font-size:1.45rem}
+  .cards{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-badge">CISI · NEW TESTS</div>
+  <h1>Practice Tests</h1>
+  <p>10 questions per round · Smart shuffle · Progress saved automatically</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="n">Chapter</div><div class="l">2</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="section-label">Tests</div>
+  <div class="cards">
+
+    <!-- Section 1  -->
+    <a class="test-card" href="Ch2_Sec1_Testg.html">
+      <div class="card-top">
+        <div class="card-accent" style="background:var(--navy)"></div>
+        <div class="card-chapter">Section 1</div>
+        <div class="card-title">The Regulatory EnviCOBS Application & General Provisionsronment</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-meta">
+          <span class="chip chip-q">21 questions</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Section 2 -->
+    <a class="test-card" href="Ch2_Sec2_Testg.html">
+      <div class="card-top">
+        <div class="card-accent" style="background:var(--teal)"></div>
+        <div class="card-chapter">Section 2</div>
+        <div class="card-title">Appointed Representatives</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-meta">
+          <span class="chip chip-q">34 questions</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+    <!-- Section 3 -->
+    <a class="test-card" href="Ch2_Sec3_Testg.html">
+      <div class="card-top">
+        <div class="card-accent" style="background:var(--teal)"></div>
+        <div class="card-chapter">Section 3</div>
+        <div class="card-title">Accepting Clients</div>
+      </div>
+      <div class="card-footer">
+        <div class="card-meta">
+          <span class="chip chip-q">40 questions</span>
+        </div>
+        <span class="card-arrow">→</span>
+      </div>
+    </a>
+
+  </div>
+
+  
+
+  <div class="section-label" style="margin-top:2rem">How it works</div>
+  <div style="background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.2rem 1.4rem;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.9rem">
+    <div style="display:flex;gap:.7rem;align-items:flex-start">
+      <div style="width:32px;height:32px;min-width:32px;border-radius:8px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;font-size:1rem">🎯</div>
+      <div><div style="font-size:.85rem;font-weight:700;color:var(--navy)">10 questions per round</div><div style="font-size:.78rem;color:var(--text2);margin-top:.15rem">Each round draws from a full question bank — new mix every time.</div></div>
+    </div>
+    <div style="display:flex;gap:.7rem;align-items:flex-start">
+      <div style="width:32px;height:32px;min-width:32px;border-radius:8px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;font-size:1rem">🔀</div>
+      <div><div style="font-size:.85rem;font-weight:700;color:var(--navy)">Smart shuffle</div><div style="font-size:.78rem;color:var(--text2);margin-top:.15rem">Prioritises questions you got wrong + unseen questions first.</div></div>
+    </div>
+    <div style="display:flex;gap:.7rem;align-items:flex-start">
+      <div style="width:32px;height:32px;min-width:32px;border-radius:8px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;font-size:1rem">💾</div>
+      <div><div style="font-size:.85rem;font-weight:700;color:var(--navy)">Progress saved</div><div style="font-size:.78rem;color:var(--text2);margin-top:.15rem">Your answers and progress persist across sessions automatically.</div></div>
+    </div>
+    <div style="display:flex;gap:.7rem;align-items:flex-start">
+      <div style="width:32px;height:32px;min-width:32px;border-radius:8px;background:var(--teal-l);display:flex;align-items:center;justify-content:center;font-size:1rem">📊</div>
+      <div><div style="font-size:.85rem;font-weight:700;color:var(--navy)">Topic breakdown</div><div style="font-size:.78rem;color:var(--text2);margin-top:.15rem">Final screen shows your score by topic so you know what to review.</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  CISI · The Regulatory Environment · Practice Materials
+</div>
+
+</body>
+</html>
